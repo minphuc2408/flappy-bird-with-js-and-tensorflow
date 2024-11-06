@@ -19,8 +19,9 @@ function main() {
             this.keyHandler = new GameKeyHandler(this); // Khởi tạo KeyHandler
             this.spaceShip = new Player(this, this.spaceShipImage, gameCtx);
             this.spaceShip1 = new Player(this, this.spaceShip1Image, gameCtx);
-            this.player = [this.spaceShip, this.spaceShip1];
-            this.playerNew = [...this.player];
+            this.spaceShip3 = new Player(this, this.spaceShip3Image, gameCtx);
+            this.player = [this.spaceShip, this.spaceShip1, this.spaceShip3];
+            this.playerInGame = [...this.player];
             this.obstacleHandler = new ObstacleHandler(this, gameCtx);
             this.gameReset = new GameReset(this);
             this.gameUpdate = new GameUpdate(this);
@@ -56,6 +57,7 @@ function main() {
     const images = [
         game.spaceShipImage,
         game.spaceShip1Image,
+        game.spaceShip3Image,
         game.spaceBackground,
     ];
     

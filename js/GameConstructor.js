@@ -24,6 +24,9 @@ class GameConstructor {
 
         this.gameInstance.spaceShip1Image = new Image();
         this.gameInstance.spaceShip1Image.src = "./assets/img/spaceShip.png";
+        
+        this.gameInstance.spaceShip3Image = new Image();
+        this.gameInstance.spaceShip3Image.src = "./assets/img/spaceship3.png";
 
         this.gameInstance.spaceBackground = new Image();
         this.gameInstance.spaceBackground.src = "./assets/img/bg-9.png";

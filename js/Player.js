@@ -5,6 +5,7 @@ class Player {
         this.gameCtx = gameCtx;
 
         this.isAlive = true;
+        this.isFalling = false;
         this.x =  gameCanvas.width / 3;
         this.y =  gameCanvas.height / 2;
         this.g =  0.05;
@@ -29,13 +30,17 @@ class Player {
             this.v = 0;
         }
 
+        if(this.isFalling) {
+            this.y += 0.4;
+        }
+
         if (this.y + this.h >= gameCanvas.height) {
             this.isAlive = false;
         }
     }
     
     drawPlayer() {
-        this.gameInstance.playerNew.forEach(player => {
+        this.gameInstance.player.map(player => {
             if (player.isAlive) {
                 this.gameCtx.save();
                 this.gameCtx.translate(player.x + player.oX, player.y + player.oY);
@@ -51,6 +56,7 @@ class Player {
         this.y = gameCanvas.height / 2;
         this.v = 0;
         this.isAlive = true;
+        this.isFalling = false;
     }
 }
 

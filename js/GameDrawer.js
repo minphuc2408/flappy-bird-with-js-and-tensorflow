@@ -8,7 +8,7 @@ class GameDrawer {
         this.gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
         this.gameCtx.drawImage(this.gameInstance.spaceBackground, 0, 0, gameCanvas.width, gameCanvas.height);
 
-        this.gameInstance.player.forEach(player => {
+        this.gameInstance.playerInGame.forEach(player => {
             player.drawPlayer();
         });
 

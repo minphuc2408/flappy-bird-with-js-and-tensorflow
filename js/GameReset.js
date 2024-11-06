@@ -15,7 +15,7 @@ class GameReset {
         this.gameInstance.isGameOver = false;
         this.gameInstance.obstacleInterval = 1;
         this.gameInstance.framesSinceLastObstacle = 0; 
-
+        
         //Obtacles
         this.gameInstance.obstacleHandler.reset();
     }

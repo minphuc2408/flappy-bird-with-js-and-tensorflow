@@ -9,28 +9,24 @@ class GameUpdate {
             return;
         }
 
+        this.gameInstance.drawGame();
+
         //Player
-        this.gameInstance.playerNew.forEach(player => {
+        this.gameInstance.playerInGame.forEach(player => {
             player.updatePlayer();
+            console.log(player.y);
         });
 
-        this.gameInstance.playerNew = this.gameInstance.playerNew.filter(player => player.isAlive);
-        if(this.gameInstance.playerNew.length === 0) {
+        this.gameInstance.playerInGame = this.gameInstance.playerInGame.filter(player => player.isAlive);
+
+        if(this.gameInstance.playerInGame.length === 0) {
             this.gameInstance.isGameOver = true;
             this.gameInstance.player.forEach(player => {
                 player.resetPlayer();
             });
-            this.gameInstance.playerNew = this.gameInstance.player;
+            this.gameInstance.playerInGame = this.gameInstance.player;
         }
-
-        // GameOver
-        if (this.gameInstance.isGameOver) {
-            this.gameInstance.gameScreen.drawGameOverScreen(); 
-            return;
-        }
-        
-        this.gameInstance.drawGame();
-
+  
         this.gameInstance.framesSinceLastObstacle += 1/144;
 
         if (this.gameInstance.framesSinceLastObstacle >= this.gameInstance.obstacleInterval) {
@@ -39,6 +35,12 @@ class GameUpdate {
         }
 
         this.gameInstance.obstacleHandler.updateObstacles();
+
+        // GameOver
+        if (this.gameInstance.isGameOver) {
+            this.gameInstance.gameScreen.drawGameOverScreen(); 
+            return;
+        }
 
         requestAnimationFrame(() => this.update());
     }

@@ -17,6 +17,19 @@ class ObstacleHandler {
         this.obstacles.forEach((obstacle) => {
             obstacle.x -= obstacle.speed;
         });
+
+        this.gameInstance.playerInGame.forEach((player) => {
+            this.obstacles = this.obstacles.filter((obstacle) => {
+                if (player.x + player.w >= obstacle.x
+                    && player.x < obstacle.x + this.obstacleWidth
+                    && player.y + player.h >= obstacle.y
+                    && player.y <= obstacle.y + this.obstacleHeight) {
+                        player.isFalling = true;
+                        return false;
+                }
+                return true;
+            });
+        });
     }
 
     drawObstacles() {

@@ -12,32 +12,26 @@ class GameKeyHandler {
 
     handleKeyDown(event) {
         if (gameCanvas && !gameCanvas.classList.contains("visible")) {
-            
             this.keysPressed[event.code] = true;
-
+    
             this.gameInstance.player.forEach(player => {
-                if (event.code === "KeyA" && player === this.gameInstance.spaceShip1) {
-                    if (this.gameInstance.isGameOver || this.gameInstance.gameScreen.gameOverDisplayed) {
-                        event.preventDefault();
-                        return;
-                    }
-                    player.flap();
-                } 
-                if (event.code === "Space" && player === this.gameInstance.spaceShip) {
-                    if (this.gameInstance.isGameOver || this.gameInstance.gameScreen.gameOverDisplayed) {
-                        event.preventDefault();
-                        return;
-                    }
-                    player.flap();
+                if (this.gameInstance.isGameOver || this.gameInstance.gameScreen.gameOverDisplayed) {
+                    event.preventDefault();
+                    return;
+                }
+
+                if ((event.code === "KeyA" && player === this.gameInstance.spaceShip1 && !player.isFalling) ||
+                    (event.code === "Space" && player === this.gameInstance.spaceShip && !player.isFalling) ||
+                    (event.code === "KeyB" && player === this.gameInstance.spaceShip3 && !player.isFalling)) {
+                        player.flap();
                 }
             });
-            
-            if(event.code === 'Enter' && !this.gameInstance.isGameStarted) {
+    
+            if (event.code === 'Enter' && !this.gameInstance.isGameStarted) {
                 this.gameInstance.isGameStarted = true;
                 this.gameInstance.startGame();
             }
         }
-
     }
 
     handleKeyUp(event) {
